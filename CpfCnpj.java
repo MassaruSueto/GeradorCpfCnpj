@@ -7,8 +7,10 @@ public class CpfCnpj
 {
 	public static void main( final String[] args )
 	{
-		CpfCnpj cliente = new CpfCnpj();
-		cliente.geraCnpj();
+		CpfCnpj cliente1 = new CpfCnpj();
+		CpfCnpj cliente2 = new CpfCnpj();
+		cliente1.geraCnpj();
+		cliente2.geraCpf();
 	}
 
 	private static final int[] PRIMEIRO_DIGITO_CNPJ = {5,4,3,2,9,8,7,6,5,4,3,2};
@@ -24,7 +26,6 @@ public class CpfCnpj
 	private String cnpjCpf;
 
 	private ArrayList<Integer> listaAleatoria = new ArrayList<>();
-	private ArrayList<Integer> listaMultiplicada;
 
 	public void geraCpf() {
 		this.geraCpfParcial();
@@ -67,16 +68,16 @@ public class CpfCnpj
 	}
 
 	private void geraDigito(final int[] peso) {
-		this.listaMultiplicada = new ArrayList<>();
+		ArrayList<Integer> listaMultiplicada = new ArrayList<>();
 		int primeiroDigito = 0;
 		int somaTotal = 0;
 		int resto;
 		int cont = 0;
 		for (int item : this.listaAleatoria) {
-			this.listaMultiplicada.add(item * peso[cont]);
+			listaMultiplicada.add(item * peso[cont]);
 			cont++;
 		}
-		for (Integer item : this.listaMultiplicada) {
+		for (Integer item : listaMultiplicada) {
 			somaTotal += item;
 		}
 		resto = somaTotal % 11;
